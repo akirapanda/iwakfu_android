@@ -1,14 +1,12 @@
 package com.iwakfu.adapter;
 
 import java.lang.ref.SoftReference;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -25,7 +23,6 @@ public class MainListViewAdapter extends BaseAdapter {
 	private List<Item> items;
 	private Context context;
 	private HashMap<String, SoftReference<Bitmap>> hashMap = new HashMap<String, SoftReference<Bitmap>>();
-
 
 	public MainListViewAdapter(List<Item> items, Context context) {
 		this.items = items;
@@ -67,8 +64,8 @@ public class MainListViewAdapter extends BaseAdapter {
 					.findViewById(R.id.main_listview_text_title)).setText(items
 					.get(position - 1).getName());
 			((TextView) relativeLayout
-					.findViewById(R.id.main_listview_text_source))
-					.setText(items.get(position - 1).getCate());
+					.findViewById(R.id.main_listview_text_source)).setText("µÈ¼¶"
+					+ items.get(position - 1).getLevel());
 			((TextView) relativeLayout
 					.findViewById(R.id.main_listview_text_date)).setText(items
 					.get(position - 1).getDate());
@@ -136,30 +133,43 @@ public class MainListViewAdapter extends BaseAdapter {
 	 */
 	private void setViews(RelativeLayout relativeLayout) {
 
-//		ViewPager viewPager = (ViewPager) relativeLayout
-//				.findViewById(R.id.main_viewpager);
-//		List<ImageView> imageViews = new ArrayList<ImageView>();
-//		ImageView imageView1 = new ImageView(context);
-//		imageView1.setImageResource(R.drawable.a1);
-//		imageViews.add(imageView1);
-//		ImageView imageView2 = new ImageView(context);
-//		imageView2.setImageResource(R.drawable.a2);
-//		imageViews.add(imageView2);
-//		ImageView imageView3 = new ImageView(context);
-//		imageView3.setImageResource(R.drawable.a3);
-//		imageViews.add(imageView3);
-//		ImageView imageView4 = new ImageView(context);
-//		imageView4.setImageResource(R.drawable.a4);
-//		imageViews.add(imageView4);
-//		ImageView imageView5 = new ImageView(context);
-//		imageView5.setImageResource(R.drawable.a5);
-//		imageViews.add(imageView5);
-//		viewPager.setAdapter(new MainViewPagerAdapter(imageViews));
+		// ViewPager viewPager = (ViewPager) relativeLayout
+		// .findViewById(R.id.main_viewpager);
+		// List<ImageView> imageViews = new ArrayList<ImageView>();
+		// ImageView imageView1 = new ImageView(context);
+		// imageView1.setImageResource(R.drawable.a1);
+		// imageViews.add(imageView1);
+		// ImageView imageView2 = new ImageView(context);
+		// imageView2.setImageResource(R.drawable.a2);
+		// imageViews.add(imageView2);
+		// ImageView imageView3 = new ImageView(context);
+		// imageView3.setImageResource(R.drawable.a3);
+		// imageViews.add(imageView3);
+		// ImageView imageView4 = new ImageView(context);
+		// imageView4.setImageResource(R.drawable.a4);
+		// imageViews.add(imageView4);
+		// ImageView imageView5 = new ImageView(context);
+		// imageView5.setImageResource(R.drawable.a5);
+		// imageViews.add(imageView5);
+		// viewPager.setAdapter(new MainViewPagerAdapter(imageViews));
 
 	}
 
 	public void setNews(List<Item> items) {
 		this.items = items;
+	}
+
+	public void clearList(List<Item> f) {
+		int size = f.size();
+		if (size > 0) {
+			f.removeAll(f);
+			this.notifyDataSetChanged();
+		}
+	}
+
+	public void clearAll() {
+		items.clear();
+		this.notifyDataSetChanged();
 	}
 
 }

@@ -19,6 +19,7 @@ public class MainActivity extends FragmentActivity {
 		fragments = new Fragment[1];
 		fragments[0] = getSupportFragmentManager().findFragmentById(
 				R.id.farment_main);
+
 		getSupportFragmentManager().beginTransaction().show(fragments[0])
 				.commit();
 	}
@@ -29,7 +30,7 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 	public void phoneClick(View view) {
-		getSupportFragmentManager().beginTransaction().hide(fragments[0])
+		getSupportFragmentManager().beginTransaction().hide(fragments[0]).show(fragments[1])
 				.commit();
 	}
 
